@@ -11,14 +11,6 @@ import (
 	// "crypto/md5"
 )
 
-// const (
-// 	CONN_HOST = "10.0.0.1"
-// 	CONN_PORT = "1025"
-// 	CONN_TYPE = "udp4"
-// 	MIN_UDP_SEG_SIZE = 56
-// 	MIN_IP_PAYLOAD = 64
-// )
-
 func check(e error) {
 	if e != nil {
 		fmt.Println(e)
@@ -211,17 +203,6 @@ func main() {
 			wire = append(wire, payload[i])
 	}
 	fmt.Println("Total size of IP Packet: ", len(wire))
-	// fmt.Printf("wire = %#v\n", wire)
-
-	// Workign code for sending ONLY PAYLOAD in UDP packet.
-	// conn, err := net.Dial(CONN_TYPE, CONN_HOST+":"+CONN_PORT)
-	// check(err)
-	// numSend, err := conn.Write(BS)
-	// check (err)
-	// if numSend != len(BS){
-	// 	log.Fatalf("Sended %d/%d bytes\n", numSend, len(BS))
-	// }
-	// conn.Close()
 
 	//working code for sending IP/UDP/Payload data
 	fd, err := unix.Socket(unix.AF_INET, unix.SOCK_RAW, unix.IPPROTO_RAW)
@@ -234,10 +215,4 @@ func main() {
 		err = unix.Sendto(fd, wire, 0, &addr)
 		check(err)
 	}
-
-
-
 }
-
-// func handleRequest(conn net.Conn) {
-// }
