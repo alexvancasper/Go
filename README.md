@@ -1,0 +1,1 @@
+This is an example of how to send RAW IP packet with UDP and RADIUS CoA-Request in the payload.
